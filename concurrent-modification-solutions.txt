@@ -1,0 +1,37 @@
+/*for(String dbsetitem1 : objectsId){
+			
+			if(arraylistInput.contains(dbsetitem1)){
+				
+				userInputObjects.remove(dbsetitem1);
+				
+				objectsId.remove(dbsetitem1);
+			}
+			
+			
+			
+		}*/
+		
+		Iterator<String> iter = objectsId.iterator();
+
+		while (iter.hasNext()) {
+		    String dbSetItem= iter.next();
+
+		    if (arrayListInput.contains(dbSetItem)){
+		        iter.remove();
+		        arrayListInput.remove(dbSetItem);
+		}
+		    
+		}
+
+Scenario : 
+
+List 1 contains objects [12 ,23,43,55,33,24,55]
+List 2 contains objects [12,23,43,55,24,33]
+
+removes all elements from list one that is present in list . In case if an object is present multiple time then remove that
+only one time.
+output:
+
+55
+
+********************************************************************************************
