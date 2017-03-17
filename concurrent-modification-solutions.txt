@@ -2,7 +2,7 @@
 			
 			if(arraylistInput.contains(dbsetitem1)){
 				
-				userInputObjects.remove(dbsetitem1);
+				arraylistInput.remove(dbsetitem1);
 				
 				objectsId.remove(dbsetitem1);
 			}
@@ -17,7 +17,7 @@
 		    String dbSetItem= iter.next();
 
 		    if (arrayListInput.contains(dbSetItem)){
-		        iter.remove();
+		        iter.remove();//removes from the list which we currently iterating....
 		        arrayListInput.remove(dbSetItem);
 		}
 		    
