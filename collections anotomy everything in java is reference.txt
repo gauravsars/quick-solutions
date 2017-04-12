@@ -1,0 +1,147 @@
+***************************************************************************************************************************
+In case we are storing built in objects in collections...
+
+like string type objects then...
+
+
+1.ArrayList<String> sevenDaysofWeek = new ArrayList<String>();
+		
+2.ArrayList<String> englishNames = new ArrayList<String>();
+		
+		
+sevenDaysofWeek.add("Monday");sevenDaysofWeek.add("Tuesday");sevenDaysofWeek.add("Wednesday");
+sevenDaysofWeek.add("Thursday");sevenDaysofWeek.add("Friday");sevenDaysofWeek.add("Saturday");
+sevenDaysofWeek.add("Sunday");
+
+then we do,
+
+//here we are assiging the reference of sevenDaysofWeek to englishNames and both are objects of ArrayList class.
+
+englishNames = sevenDaysofWeek
+
+//Now both contains the same reference
+
+so if we change/modify the contents of 1 then change is done on the elements using the reference like,
+
+private ArrayList<String> updateDays(ArrayList<String> sevenDaysofWeek) {
+		
+		
+		for(int i = 0 ; i < sevenDaysofWeek.size() ; i++){
+			
+			if(i == 0)
+			sevenDaysofWeek.set(i, "Somvar");
+			
+			if(i == 1)
+			sevenDaysofWeek.set(i, "Mangalvar");	
+			
+		}
+		
+		return sevenDaysofWeek;
+		
+	}
+
+
+Now englishNames content will also gets changed as the content pointed by the reference of sevenDaysofWeek is changed
+and that is the same reference stored in the englishNames list.
+
+
+***************************************************************************************************************************
+
+in the existing scenario if in place of below lines we are using....
+
+//here we are assiging the reference of sevenDaysofWeek to englishNames and both are objects of ArrayList class.
+
+englishNames = sevenDaysofWeek
+
+//Now both contains the same reference
+
+
+
+//here we are copying the contents of sevenDaysofWeek to englishNames and both are objects of ArrayList class.
+
+englishNames.addAll(sevenDaysofWeek);
+
+//Now both englishNames and sevenDaysofWeek are pointing to different reference.Even though currently they have same 
+content but now even if any of these list changes then other one will remain unaffected.
+
+
+***************************************************************************************************************************
+
+
+in the existing scenario....
+:::Tocheck:::(also check might be there is concept of immutability as integer float all can be created without new operator)
+(and only after using new the reference id is generated)
+
+
+we are using String type objects as the content in the list
+
+but in case suppose we are using custom objects like...
+
+
+ArrayList<WeekDayModel> sevenDaysofWeek = new ArrayList<WeekDayModel>();
+
+and
+
+ArrayList<WeekDayModel> englishNames = new ArrayList<WeekDayModel>();
+
+then,
+
+each list stores intially ....
+
+1.[testCustomobjectsinlist.WeekDayModel@15db9742, testCustomobjectsinlist.WeekDayModel@6d06d69c, testCustomobjectsinlist.WeekDayModel@7852e922, testCustomobjectsinlist.WeekDayModel@4e25154f, testCustomobjectsinlist.WeekDayModel@70dea4e,
+ testCustomobjectsinlist.WeekDayModel@5c647e05, testCustomobjectsinlist.WeekDayModel@33909752]
+
+2.[testCustomobjectsinlist.WeekDayModel@15db9742, testCustomobjectsinlist.WeekDayModel@6d06d69c, testCustomobjectsinlist.WeekDayModel@7852e922, testCustomobjectsinlist.WeekDayModel@4e25154f, testCustomobjectsinlist.WeekDayModel@70dea4e,
+ testCustomobjectsinlist.WeekDayModel@5c647e05, testCustomobjectsinlist.WeekDayModel@33909752]
+
+after changing contents of one list without creating a new object reference the list contents remains the same ...
+
+
+however if we are creating the new reference then both lists are having objects whose reference(objects) varies....
+
+
+	private ArrayList<WeekDayModel> updateDays(ArrayList<WeekDayModel> sevenDaysofWeek) {
+		
+	/*	Iterator itr = sevenDaysofWeek.iterator();
+		
+		while(itr.hasNext()){
+			
+			String day =(String) itr.next();
+			
+			
+		}*/
+		
+		for(int i = 0 ; i < sevenDaysofWeek.size() ; i++){
+			if((i == 1) || (i == 3)){
+			WeekDayModel weekDayModel = sevenDaysofWeek.get(i);
+			
+			WeekDayModel weekDayModelNew = new WeekDayModel();
+			if(i == 1){
+			weekDayModelNew.setBehaviour("very nice");
+			weekDayModelNew.setLordName(weekDayModel.getLordName());
+			weekDayModelNew.setWeekDayHindiName("Somvar");
+			weekDayModelNew.setWeekDayName("Monday");
+			
+			sevenDaysofWeek.set(i, weekDayModelNew);
+			
+		}
+			else{
+				weekDayModelNew.setBehaviour("very nice");
+				weekDayModelNew.setLordName(weekDayModel.getLordName());
+				weekDayModelNew.setWeekDayHindiName("Somvar");
+				weekDayModelNew.setWeekDayName("Monday");
+				
+				sevenDaysofWeek.set(i, weekDayModelNew);
+			}
+			}
+		}
+		
+		return sevenDaysofWeek;
+		
+	}
+
+Thanks alot
+
+You can see the example code for quick revision.
+
+
